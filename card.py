@@ -6,3 +6,6 @@ class Card:
 
     def __str__(self):
         return f"Card: {self.value}{self.color}"
+
+    def __eq__(self, other):
+        return self.value == other

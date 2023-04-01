@@ -13,11 +13,15 @@ class Player:
         for card in self.cards_in_hand:
             values += card
         return values
-    
+
 
 class Human(Player):
+    def __init__(self, name):
+        super.__init__(name)
     pass
 
 
 class Croupier(Player):
+    def __init__(self, name):
+        super.__init__(name)
     pass
