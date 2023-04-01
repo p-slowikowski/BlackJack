@@ -20,3 +20,13 @@ class Deck:
 
     def pull_out_single_card(self):
         return self.deck.pop(0)
+
+deck = Deck()
+print(deck)
+deck.shuffle_deck()
+print(deck)
+a = deck.pull_out_single_card()
+print(a)
+
+
+
