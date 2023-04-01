@@ -1,4 +1,5 @@
 from card import Card
+from random import shuffle
 
 
 class Deck:
@@ -13,4 +14,19 @@ class Deck:
         for letter in self.deck:
             output += f"{letter}\n"
         return output
+
+    def shuffle_deck(self):
+        shuffle(self.deck)
+
+    def pull_out_single_card(self):
+        return self.deck.pop(0)
+
+deck = Deck()
+print(deck)
+deck.shuffle_deck()
+print(deck)
+a = deck.pull_out_single_card()
+print(a)
+
+
 
