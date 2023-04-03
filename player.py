@@ -4,18 +4,19 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.cards_in_hand = []
+        self.values = 0
 
     def take_card(self, card):
         return self.cards_in_hand.append(card)
 
     def values_cards_in_hand(self):
-        values = 0
+        self.values = 0
         for card in self.cards_in_hand:
             if card == "Q" or card == "J" or card == "K" or card == "AS":
-                values += 10
+                self.values += 10
             else:
-                values += card.value
-        return f"Total values your cards: {values}"
+                self.values += card.value
+        return f"Total values your cards: {self.values}"
 
 
 class Human(Player):
