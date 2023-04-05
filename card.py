@@ -1,12 +1,16 @@
+"""Class creaton card in Blackjack"""
+
+
 class InvalidColor(Exception):
-    pass
+    """Exception when creation card with invalid color"""
 
 
 class InvalidValue(Exception):
-    pass
+    """Exception when creation card with invalid value"""
 
 
 class Card:
+    """Initialize elementary card"""
 
     POSSIBLE_VALUES = list(range(2, 11)) + ["J", "Q", "K", "AS"]
     POSSIBLE_COLORS = ["♥", "♦", "♠", "♣"]
