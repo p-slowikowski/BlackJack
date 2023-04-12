@@ -27,7 +27,7 @@ class Player:
             else:
                 self.values += card.value
 
-        return f"Total values your cards: {self.values}"
+        return self.values
 
     def __str__(self):
         return f"Hello. I'm {self.name} i to moje karty{self.cards_in_hand}"
