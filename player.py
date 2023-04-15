@@ -5,6 +5,7 @@ class Player:
         self.name = name
         self.cards_in_hand = []
         self.values = 0
+        self.buttons = []
 
     def take_card(self, card):
         return self.cards_in_hand.append(card)
