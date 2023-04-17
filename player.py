@@ -31,7 +31,10 @@ class Player:
         return self.values
 
     def __str__(self):
-        return f"Hello. I'm {self.name} i to moje karty{self.cards_in_hand}"
+        return f"{self.name}"
+
+    def __repr__(self):
+        return f"{self.name}"
 
     def show_card(self):
         output = ""

@@ -1,3 +1,6 @@
+
+
+
 from tkinter import *
 from player import Player
 from deck import Deck
@@ -41,16 +44,15 @@ class Game:
             winner_label.config(text=f"The winner is {player1.name}")
         after_game_frame = Frame(self.empty_field)
         after_game_frame.grid(row=5, column=3)
-        play_again_button = Button(after_game_frame, text="Play Again", command=lambda: self.let_game())
+        play_again_button = Button(after_game_frame, text="Play Again", command=lambda: [self.reload_game])
         play_again_button.grid(row=0, column=0)
         play_again_button = Button(after_game_frame, text="Exit", command=lambda: self.root.quit())
         play_again_button.grid(row=0, column=1)
 
     def reload_game(self):
-        self.game.destroy()
-
-    def next_game(self):
-        pass
+        self.game.grid_forget()
+        self.game.grid()
+        self.let_game()
 
     def let_game(self):
         if len(self.deck.deck) >= 4:
