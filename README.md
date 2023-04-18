@@ -1,22 +1,26 @@
 # BlackJack
 Simply window app where user play aganist CPU in BlackJack. 
 
-#How to load?
+# How to load?
 
-#Console version
+## Console version
 Download ZIP
+
 Open file main.py 
+
 Compile the file
 
-#Window version
+## Window version
 Download ZIP
+
 Open file tkinter_screen.py 
+
 Compile the file
 
 
-#Used technologies
+# Used technologies
 Python
 Pytest
 TKinter
 
-App is still in progress...
+# App is still in progress...
