@@ -41,3 +41,7 @@ class Player:
         for letter, card in enumerate(self.cards_in_hand):
             output += f"{card}\n"
         return output
+
+    def remove_card_from_hand(self):
+        self.cards_in_hand.clear()
+        self.buttons.clear()

@@ -1,16 +1,22 @@
+"""visualize in tkinter window BlackJack game"""
 from tkinter import *
 from player import Player
 from deck import Deck
 
 
 class Game:
+    """Main class Game"""
     def __init__(self):
         self.root = Tk()
         self.name_player = None
         self.list_players = []
         self.deck = Deck()
+        self.deck.shuffle_deck()
 
     def window(self):
+        """
+        Initialize main window
+        """
         self.root.geometry("1000x1000")
         self.root.resizable(width=False, height=False)
         self.root.title("BlackJack")
@@ -18,6 +24,10 @@ class Game:
         self.root.mainloop()
 
     def choice_hit(self, player1, player2, player1_values, game):
+        """
+        After click button "HIT"
+        Add user card and croupier, and show values cards in hand
+        """
         player1.take_card(self.deck.pull_out_single_card())
         card_button1 = Button(game, text=player1.cards_in_hand[-1], width=7, height=4)
         player1.buttons.append(card_button1)
@@ -31,10 +41,15 @@ class Game:
         player1_values.config(text=f"Values card: {player1.values_cards_in_hand()}")
 
     def choice_pass(self, player1, player2, player2_values, winner_label, game):
+        """
+        After click button "Pass"
+        Check which player won and show buttons: "Play again" and "Exit"
+        """
         player2_values.config(text=f"Values card: {player2.values_cards_in_hand()}")
         for number, button in enumerate(player2.buttons):
             button.config(text=player2.cards_in_hand[number])
-        if player1.values_cards_in_hand() <= player2.values_cards_in_hand() or player1.values_cards_in_hand() > 21:
+        if player1.values_cards_in_hand() <= player2.values_cards_in_hand()\
+                or player1.values_cards_in_hand() > 21:
             winner_label.config(text=f"The winner is {player2.name}")
         else:
             winner_label.config(text=f"The winner is {player1.name}")
@@ -44,10 +59,16 @@ class Game:
         play_again_button.grid(row=5, column=1)
 
     def reload_game(self, game):
+        """
+        Reload window when user want play again
+        """
         game.grid_forget()
         self.first_game()
 
     def first_game(self):
+        """
+        Initialize first game
+        """
         game = Frame(self.root)
         game.grid(row=0, column=0)
         if len(self.deck.deck) > 5:
@@ -59,6 +80,10 @@ class Game:
 
             player2_name = Label(game, text=self.list_players[1], width=50)
             player2_name.grid(row=0, column=1)
+
+            if len(player1.cards_in_hand) > 1:
+                player1.remove_card_from_hand()
+                player2.remove_card_from_hand()
 
             for number in range(2):
                 player1.take_card(self.deck.pull_out_single_card())
@@ -81,7 +106,8 @@ class Game:
 
             next_step_button2 = Button(game, text="HIT", width=8)
             next_step_button2.grid(row=9, column=0)
-            next_step_button2.config(command=lambda: self.choice_hit(player1, player2, player1_values, game))
+            next_step_button2.config(command=lambda: self.choice_hit(player1, player2,
+                                                                     player1_values, game))
 
             winner_label = Label(game, text="")
             winner_label.grid(row=4, column=0)
@@ -98,6 +124,9 @@ class Game:
             exit_button.grid(row=1, column=0)
 
     def main_menu(self):
+        """
+        Show main_manu, user can enter his name and play
+        """
         self.root.update()
         menu = Frame(self.root)
         menu.grid(row=0, column=0)
@@ -120,13 +149,22 @@ class Game:
         button_exit.config(command=lambda: self.root.quit())
 
     def save_name(self, input_name):
+        """
+        Save user's name in class Game
+        """
         self.name_player = input_name.get()
 
     @staticmethod
     def menu_grid_forget(menu):
+        """
+        Clear mian menu when user entered his name
+        """
         menu.grid_forget()
 
     def initialize_game(self):
+        """
+        Create Player and Croupier object and append to list of players
+        """
         player1 = Player(self.name_player)
         self.list_players.append(player1)
         croupier = Player("Croupier")
