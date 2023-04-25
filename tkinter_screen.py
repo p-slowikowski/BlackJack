@@ -17,7 +17,7 @@ class Game:
         """
         Initialize main window
         """
-        self.root.geometry("1000x1000")
+        self.root.geometry("600x400")
         self.root.resizable(width=False, height=False)
         self.root.title("BlackJack")
         self.main_menu()
@@ -54,9 +54,9 @@ class Game:
         else:
             winner_label.config(text=f"The winner is {player1.name}")
         play_again_button = Button(game, text="Play Again", command=lambda: [self.reload_game(game)])
-        play_again_button.grid(row=5, column=0)
-        play_again_button = Button(game, text="Exit", command=lambda: self.root.quit())
-        play_again_button.grid(row=5, column=1)
+        play_again_button.grid(row=5, column=8)
+        play_again_button = Button(game, width=8, text="Exit", command=lambda: self.root.quit())
+        play_again_button.grid(row=5, column=9)
 
     def reload_game(self, game):
         """
@@ -75,11 +75,11 @@ class Game:
             player1 = self.list_players[0]
             player2 = self.list_players[1]
 
-            player1_name = Label(game, text=self.list_players[0], width=50)
-            player1_name.grid(row=10, column=1)
+            player1_name = Label(game, text=self.list_players[0])
+            player1_name.grid(row=10, column=7)
 
-            player2_name = Label(game, text=self.list_players[1], width=50)
-            player2_name.grid(row=0, column=1)
+            player2_name = Label(game, text=self.list_players[1])
+            player2_name.grid(row=0, column=7)
 
             if len(player1.cards_in_hand) > 1:
                 player1.remove_card_from_hand()
@@ -97,23 +97,23 @@ class Game:
                 card_button2.grid(row=2, column=number)
 
             player1_values = Label(game, text=f"Values card: {player1.values_cards_in_hand()}")
-            player1_values.grid(row=7, column=0)
-            player2_values = Label(game, text=f"Values card: XXX", width=15)
-            player2_values.grid(row=1, column=0)
+            player1_values.grid(row=7, column=7)
+            player2_values = Label(game, text=f"Values card: XXX")
+            player2_values.grid(row=1, column=7)
 
-            next_step = Label(game, text="What is your's next step?", width=20)
-            next_step.grid(row=8, column=0)
+            next_step = Label(game, text="What is your's next step?")
+            next_step.grid(row=8, column=7)
 
             next_step_button2 = Button(game, text="HIT", width=8)
-            next_step_button2.grid(row=9, column=0)
+            next_step_button2.grid(row=8, column=8)
             next_step_button2.config(command=lambda: self.choice_hit(player1, player2,
                                                                      player1_values, game))
 
             winner_label = Label(game, text="")
-            winner_label.grid(row=4, column=0)
+            winner_label.grid(row=4, column=7)
 
             next_step_button = Button(game, text="PASS", width=8)
-            next_step_button.grid(row=9, column=1)
+            next_step_button.grid(row=8, column=9)
             next_step_button.config(command=lambda: self.choice_pass(player1, player2, player2_values,
                                                                      winner_label, game))
         else:
@@ -132,20 +132,20 @@ class Game:
         menu.grid(row=0, column=0)
 
         name_label = Label(menu, text="Enter your's name and press PLAY", width=50)
-        name_label.grid(row=0, column=0)
+        name_label.grid(row=0, column=7)
 
         input_name = Entry(menu)
-        input_name.grid(row=1, column=0)
+        input_name.grid(row=1, column=7)
 
         button_play = Button(menu, text="PLAY", width=8)
-        button_play.grid(row=2, column=0)
+        button_play.grid(row=2, column=7)
         button_play.config(command=lambda: [self.save_name(input_name),
                                             self.menu_grid_forget(menu),
                                             self.initialize_game(),
                                             self.first_game()])
 
         button_exit = Button(menu, text="EXIT", width=8)
-        button_exit.grid(row=3, column=0)
+        button_exit.grid(row=3, column=7)
         button_exit.config(command=lambda: self.root.quit())
 
     def save_name(self, input_name):
