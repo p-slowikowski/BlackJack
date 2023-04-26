@@ -1,5 +1,4 @@
-
-
+"""Old version class Game before rebuilding"""
 
 from tkinter import *
 from player import Player

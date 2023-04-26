@@ -1,14 +1,15 @@
-import player
 from player import Player
 from deck import Deck
 
 
 class Game:
+    """Class Game with all rules"""
     def __init__(self):
         self.deck = Deck()
         self.deck.shuffle_deck()
 
     def play(self):
+        """Main method to initialize game"""
         player1 = Player("Patryk")
         player2 = Player("Croupier")
         for _ in range(0, 2):
